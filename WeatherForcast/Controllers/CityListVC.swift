@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreLocation
+import Alamofire
+import AlamofireImage
 
 protocol UpdateCityWeatherDelegate {
     func updateCityWeatherController(coordinate: CLLocationCoordinate2D)
@@ -19,8 +21,7 @@ class CityListVC: UIViewController {
     let databaseInstance = DataOperation.singleton
     var arrCities = [City]()
     var refreshControl = UIRefreshControl()
-    var delegate: UpdateCityWeatherDelegate!
-    
+    var delegate: UpdateCityWeatherDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupViews()
@@ -30,7 +31,7 @@ class CityListVC: UIViewController {
     
     func setupViews(){
     
-        //refreshControl.addTarget(self, action: #selector(self.fetchWeatherInfo), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.callMutilpleCityWeather), for: .valueChanged)
         if #available(iOS 10.0, *) {
             tblCities.refreshControl = refreshControl
         } else {
@@ -43,8 +44,6 @@ class CityListVC: UIViewController {
     }
     @IBAction func btnAddTapped(){
         let vc = self.getNavLocationPickerVC()
-        let locationVC: LocationPickerVC = vc.viewControllers.first! as! LocationPickerVC
-        locationVC.delegate = self
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -61,9 +60,59 @@ class CityListVC: UIViewController {
     }
 }
 
-extension CityListVC: LocationPickerDelegate{
-    func selectedCity(coordinate: CLLocationCoordinate2D) {
-        print(coordinate)
+extension CityListVC{
+    func dismissandGotoCityWeather(coordinate: CLLocationCoordinate2D) {
+        self.dismiss(animated: true) {
+            self.delegate?.updateCityWeatherController(coordinate: coordinate)
+        }
+    }
+}
+
+//MARK: Web Service Calls
+extension CityListVC {
+    @objc func callMutilpleCityWeather() {
+        let ids = self.arrCities.map { "\($0.cityId)" }
+        let finalIds = ids.joined(separator: ",")
+        let unit = UserDefaults.standard.string(forKey: UnitKey.weatherUnitKey)
+        let weatherReq = GroupCityReq(cityId: finalIds, unit: unit)
+        print(weatherReq.getParameters())
+        DataManager.singleton.getRequest(WebAPI.MultipleCityGroup, params: weatherReq.getParameters())
+        { (response: Result<GroupCityRes>) in
+            
+            switch response {
+            case .success(let value):
+                print(value)
+                self.refreshControl.endRefreshing()
+                let arrList = value.list
+                
+                if arrList.count > 0 {
+                    do {
+                        for objWeather in arrList {
+                            let predicate = NSPredicate(format: "cityId == %d", objWeather.id)
+                            let records = self.databaseInstance.dbManager.getRecordsByPredicate(type: City.self, predicate: predicate)
+                            
+                            if let dbRecords = records, dbRecords.count > 0 {
+                                let objFirst = dbRecords.first!
+                                try self.databaseInstance.updateCityByGroupResponse(city: objWeather, cityRecord: objFirst)
+                            }
+                            
+                            DispatchQueue.main.async {
+                                self.fetchBookmarkedCities()
+                            }
+                        }
+                    }catch { print(error.localizedDescription)}
+                }
+                else{
+                    self.showBanner(title: nil, message: NetworkErrors.noResponseFound, theme: .error, position: .center)
+                }
+                break
+            case .failure(let error):
+                self.refreshControl.endRefreshing()
+                print(error.localizedDescription)
+                self.showBanner(title: nil, message: NetworkErrors.noResponseFound, theme: .error, position: .center)
+                break
+            }
+        }
     }
 }
 
@@ -102,9 +151,7 @@ extension CityListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let city = self.arrCities[indexPath.row];
         let coordinate = CLLocationCoordinate2D(latitude: city.latitude, longitude: city.longitude)
-        self.dismiss(animated: true) {
-            self.delegate.updateCityWeatherController(coordinate: coordinate)
-        }
+        self.dismissandGotoCityWeather(coordinate: coordinate)
     }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true

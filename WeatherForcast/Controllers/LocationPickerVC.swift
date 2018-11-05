@@ -10,10 +10,6 @@ import GoogleMaps
 import GooglePlaces
 import UIKit
 
-protocol LocationPickerDelegate {
-    func selectedCity(coordinate:CLLocationCoordinate2D)
-}
-
 class LocationPickerVC: UIViewController {
     
     @IBOutlet var addressLabel:UILabel!
@@ -21,7 +17,6 @@ class LocationPickerVC: UIViewController {
     @IBOutlet var viewAddressContainer:UIView!
     @IBOutlet var buttonSetAddress:UIButton!
     var selectedCoordinates = CLLocationCoordinate2D(latitude: 23.0225, longitude: 72.5714)
-    var delegate: LocationPickerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,9 +65,7 @@ class LocationPickerVC: UIViewController {
     
     @IBAction func selectAddressTapped(_ sender: UIButton!){
         if selectedCoordinates.latitude != 0.0 && selectedCoordinates.longitude != 0.0{
-            self.dismiss(animated: true) {
-                self.delegate?.selectedCity(coordinate: self.selectedCoordinates)
-            }
+            self.performSegue(withIdentifier:Texts.unwindSeguetoWeather, sender: self)
         }
         else {
             self.showBanner(title: "Select City", message: "Please select valid location", theme: .error, position: .center)
@@ -97,8 +90,9 @@ extension LocationPickerVC: GMSMapViewDelegate, GMSAutocompleteViewControllerDel
     }
     
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        
+        self.dismiss(animated: true, completion: nil)
     }
+    
     
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         let coordinate = mapView.camera.target

@@ -19,6 +19,7 @@ struct ForcastWeatherRes: Codable {
 }
 
 struct WeatherForcast: Codable {
+    var id:     Int
     var dt:     Int64
     var name:  String
     var main:   Main
@@ -26,6 +27,7 @@ struct WeatherForcast: Codable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeWrapper(key: .id, defaultValue: 0)
         self.dt = try container.decodeWrapper(key: .dt, defaultValue: 0)
         self.name = try container.decodeWrapper(key: .name, defaultValue: "-")
         self.main = try container.decode(Main.self, forKey: .main)

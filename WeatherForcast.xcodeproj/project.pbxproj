@@ -13,7 +13,7 @@
 		626FB183218D74280002EAF5 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626FB182218D74280002EAF5 /* AppConstants.swift */; };
 		626FB187218D80290002EAF5 /* CommonParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626FB186218D80280002EAF5 /* CommonParameters.swift */; };
 		626FB189218D816C0002EAF5 /* CurrentWeatherReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626FB188218D816C0002EAF5 /* CurrentWeatherReq.swift */; };
-		626FB18B218D883E0002EAF5 /* WeatherByCityIdReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626FB18A218D883E0002EAF5 /* WeatherByCityIdReq.swift */; };
+		626FB18B218D883E0002EAF5 /* GroupCityReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626FB18A218D883E0002EAF5 /* GroupCityReq.swift */; };
 		C6AF0857219038340001C059 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AF0856219038340001C059 /* WeatherData.swift */; };
 		C6AF0859219038F40001C059 /* DataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AF0858219038F40001C059 /* DataOperation.swift */; };
 		C6AF087121904F310001C059 /* GroupCityRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AF087021904F310001C059 /* GroupCityRes.swift */; };
@@ -66,7 +66,7 @@
 		626FB182218D74280002EAF5 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		626FB186218D80280002EAF5 /* CommonParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonParameters.swift; sourceTree = "<group>"; };
 		626FB188218D816C0002EAF5 /* CurrentWeatherReq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherReq.swift; sourceTree = "<group>"; };
-		626FB18A218D883E0002EAF5 /* WeatherByCityIdReq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherByCityIdReq.swift; sourceTree = "<group>"; };
+		626FB18A218D883E0002EAF5 /* GroupCityReq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCityReq.swift; sourceTree = "<group>"; };
 		7AC4C85D8CEA6CB122A74979 /* Pods-WeatherForcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherForcast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherForcast/Pods-WeatherForcast.debug.xcconfig"; sourceTree = "<group>"; };
 		7D585A7DE29A289526725148 /* Pods-WeatherForcastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherForcastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherForcastTests/Pods-WeatherForcastTests.release.xcconfig"; sourceTree = "<group>"; };
 		A8F9DD6E7855B694EE010D3A /* Pods-WeatherForcastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherForcastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherForcastTests/Pods-WeatherForcastTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,9 +156,10 @@
 		626FB185218D7F7D0002EAF5 /* RequestModels */ = {
 			isa = PBXGroup;
 			children = (
+				C6D555BC218F319D001994FF /* ForcastDetailCell.swift */,
 				626FB186218D80280002EAF5 /* CommonParameters.swift */,
 				626FB188218D816C0002EAF5 /* CurrentWeatherReq.swift */,
-				626FB18A218D883E0002EAF5 /* WeatherByCityIdReq.swift */,
+				626FB18A218D883E0002EAF5 /* GroupCityReq.swift */,
 			);
 			path = RequestModels;
 			sourceTree = "<group>";
@@ -269,7 +270,6 @@
 			children = (
 				C6BFDB2B218D62C700097D30 /* CityWeatherDetailVC.swift */,
 				C6D555B8218F30C5001994FF /* ForcastTableCell.swift */,
-				C6D555BC218F319D001994FF /* ForcastDetailCell.swift */,
 				C6D555BE218F3354001994FF /* WeatherExtendedInfoCell.swift */,
 				C6F84E682190023200D5AF54 /* LocationPickerVC.swift */,
 				C6F84E6A219008BE00D5AF54 /* CityListVC.swift */,
@@ -651,7 +651,7 @@
 			files = (
 				C6D555B9218F30C5001994FF /* ForcastTableCell.swift in Sources */,
 				C6F84E692190023200D5AF54 /* LocationPickerVC.swift in Sources */,
-				626FB18B218D883E0002EAF5 /* WeatherByCityIdReq.swift in Sources */,
+				626FB18B218D883E0002EAF5 /* GroupCityReq.swift in Sources */,
 				C6AF0859219038F40001C059 /* DataOperation.swift in Sources */,
 				C6AF08752190526B0001C059 /* City+CoreDataProperties.swift in Sources */,
 				C6AF08742190526B0001C059 /* City+CoreDataClass.swift in Sources */,

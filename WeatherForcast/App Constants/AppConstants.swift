@@ -21,6 +21,9 @@ struct WebAPI {
     static let WeatherImageUrl = "http://openweathermap.org/img/w/"
 }
 
+struct UnitKey {
+    static let  weatherUnitKey = "weatherUnit"
+}
 public enum WeatherUnits: String{
     case Standard = "Standard"
     case Metric = "metric"

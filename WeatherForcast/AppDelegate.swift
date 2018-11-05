@@ -21,11 +21,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSServices.provideAPIKey(APIKeys.GoogleAPIKey)
         GMSPlacesClient.provideAPIKey(APIKeys.GoogleAPIKey)
+        
+        /*if UserDefaults.standard.getDefaultUnit() == nil {
+            UserDefaults.standard.setDefaultUnit(value: Unit.Metric)
+        }*/
+        if UserDefaults.standard.value(forKey: UnitKey.weatherUnitKey) == nil {
+            UserDefaults.standard.set(WeatherUnits.Metric.rawValue, forKey: UnitKey.weatherUnitKey)
+        }
 
         // Sets navigationBar's appearance
         UINavigationBar.appearance().barTintColor = UIColor.init(white: 0, alpha: 0.7)
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         DataOperation.singleton.getObjectContex()
         return true
     }

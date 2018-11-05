@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct  WeatherByCityIdReq: CommonParameters {
+struct  GroupCityReq: CommonParameters {
     var APIKey: String
     var cityId: String?
     var unit: String?

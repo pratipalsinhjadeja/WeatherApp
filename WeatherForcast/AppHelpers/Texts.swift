@@ -21,9 +21,20 @@ struct Texts {
     //City Weather
     static let tableEmpty = "No Bookmarked city found. please tap on 'Select City'"
     static let selectCity = "Select City"
+    static let updatedOn = "Updated on:"
     
     //City List
     static let bookmarkedCity = "Bookmarked City"
+    
+    //unwindSegue
+    static let unwindSeguetoWeather = "unwindToCityWeatherDetail"
+    
+    //Settings Screen
+    static let AppSettings = "Weather Settings"
+    static let weatherUnit = "Weather Units"
+    static let removeAllCities = "Remove all cities"
+    static let removeAllInfo = "are you sure?"
+    static let selectUnit = "Select Preffered Unit"
 }
 struct NetworkErrors {
     static let title = "Error"

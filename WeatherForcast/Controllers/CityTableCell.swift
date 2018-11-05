@@ -18,7 +18,7 @@ class CityTableCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         self.lblCity.font = UIFont.boldSystemFont(ofSize: 20)
-        self.lblDate.font = UIFont.systemFont(ofSize: 15)
+        self.lblDate.font = UIFont.systemFont(ofSize: 12)
         self.lblTemp.font = UIFont.boldSystemFont(ofSize: 32)
         
         self.imgWeather.contentMode = .scaleAspectFill

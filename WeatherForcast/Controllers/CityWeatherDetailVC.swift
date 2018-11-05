@@ -52,6 +52,7 @@ class CityWeatherDetailVC: UIViewController {
         }
     }
     
+    
     func setupViews() {
         self.tblWeatherDetails.allowsSelection = false
         self.tblWeatherDetails.backgroundColor = UIColor.clear
@@ -77,7 +78,9 @@ class CityWeatherDetailVC: UIViewController {
         }
     }
     func createExtendedDetailModels() {
-        
+        if self.arrExtendedInfo.count > 0{
+            self.arrExtendedInfo.removeAll()
+        }
         var objValue = Helper.getTemp(temperature: self.objWeatherData.main.temp_max)
         var objExtDetail = ExtendedDetail(title: Texts.feelLike, value: objValue)
         self.arrExtendedInfo.append(objExtDetail)
@@ -140,21 +143,20 @@ class CityWeatherDetailVC: UIViewController {
     }
     @IBAction func btnListTapped(_ sender: UIBarButtonItem) {
         let vc = self.getNavCityListVC()
+        let listVC: CityListVC = vc.viewControllers.first! as! CityListVC
+        listVC.delegate = self
         self.present(vc, animated: true, completion: nil)
     }
     
-    @objc func selectCityTapped() {
-        let vc = self.getNavLocationPickerVC()
-        let locationVC: LocationPickerVC = vc.viewControllers.first! as! LocationPickerVC
-        locationVC.delegate = self
+    @IBAction func btnSettingTapped(_ sender: Any) {
+        let vc = self.getNavSettingsVC()
+        let settingVC = vc.viewControllers.first! as! SettingsVC
+        settingVC.delegate = self
         self.present(vc, animated: true, completion: nil)
     }
-}
-
-//MARK: LocationPickerDelegate
-extension CityWeatherDetailVC: LocationPickerDelegate{
-    func selectedCity(coordinate: CLLocationCoordinate2D) {
-        self.cityCoordinate = coordinate
+    @objc func selectCityTapped() {
+        let vc = self.getNavLocationPickerVC()
+        self.present(vc, animated: true, completion: nil)
     }
 }
 
@@ -165,12 +167,29 @@ extension CityWeatherDetailVC: UpdateCityWeatherDelegate{
     }
 }
 
+//MARK: Settings Delegate
+extension CityWeatherDetailVC: UpdateCitySettingDelegate {
+    func refreshWeatherData() {
+        self.callWeatherAPIs()
+    }
+}
+
+//MARK: Unwind segue
+extension CityWeatherDetailVC{
+    @IBAction func unwindToCityWeatherDetail(segue: UIStoryboardSegue) {
+        if let locationVC = segue.source as? LocationPickerVC {
+            self.cityCoordinate = locationVC.selectedCoordinates
+        }
+    }
+}
+
 //MARK: Web API Calls
 extension CityWeatherDetailVC {
     func getCurrentWeather()
     {
         //23.0225 72.5714
-        let weatherReq = CurrentWeatherReq(lat:self.cityCoordinate.latitude , lon:self.cityCoordinate.longitude , unit: "metric")
+        let unit = UserDefaults.standard.string(forKey: UnitKey.weatherUnitKey)!
+        let weatherReq = CurrentWeatherReq(lat:self.cityCoordinate.latitude , lon:self.cityCoordinate.longitude , unit:unit)
         print(weatherReq.getParameters())
         DataManager.singleton.getRequest(WebAPI.TodayForcast, params: weatherReq.getParameters())
         { (response: Result<CurrentWeatherRes>) in
@@ -199,7 +218,8 @@ extension CityWeatherDetailVC {
     func getForcastWeather()
     {
         //23.0225 72.5714
-        let weatherReq = CurrentWeatherReq(lat:self.cityCoordinate.latitude, lon:self.cityCoordinate.longitude, unit: "metric")
+        let unit = UserDefaults.standard.string(forKey: UnitKey.weatherUnitKey)!
+        let weatherReq = CurrentWeatherReq(lat:self.cityCoordinate.latitude, lon:self.cityCoordinate.longitude, unit:unit)
         
         print(weatherReq.getParameters())
         DataManager.singleton.getRequest(WebAPI.FiveDaysForcast, params: weatherReq.getParameters())

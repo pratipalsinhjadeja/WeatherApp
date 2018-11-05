@@ -17,7 +17,7 @@ class Helper{
         dateFormatter.dateStyle = DateFormatter.Style.medium //Set date style
         dateFormatter.timeZone = TimeZone.current
         if isMinute == true {
-            dateFormatter.dateFormat = "hh:MM a"
+            dateFormatter.dateFormat = "dd-MM-yy hh:MM a"
         }else{
             dateFormatter.dateFormat = "hh a"
         }
@@ -98,6 +98,15 @@ extension UIViewController{
         return nav as! UINavigationController
     }
     
+    func getNavAboutAppVC() -> UINavigationController {
+        let nav = self.mainStoryboard().instantiateViewController(withIdentifier: "navAboutAppVC")
+        return nav as! UINavigationController
+    }
+    func getNavSettingsVC() -> UINavigationController {
+        let nav = self.mainStoryboard().instantiateViewController(withIdentifier: "navSettingsVC")
+        return nav as! UINavigationController
+    }
+    
     func showBanner(title: String?, message: String, theme: Theme, position: SwiftMessages.PresentationStyle) {
         var config = SwiftMessages.defaultConfig
         config.presentationStyle = position
@@ -156,4 +165,32 @@ extension UITableView {
         self.backgroundView = nil
         self.separatorStyle = .singleLine
     }
+}
+
+public extension Foundation.UserDefaults {
+    public subscript(key: String) -> Any? {
+        get { return value(forKey: key) as Any }
+        set {
+            switch newValue {
+            case let value as Int: set(value, forKey: key)
+            case let value as Double: set(value, forKey: key)
+            case let value as Bool: set(value, forKey: key)
+            case let value as URL: set(value, forKey: key)
+            case let value as NSObject: set(value, forKey: key)
+            case nil: removeObject(forKey: key)
+            default: assertionFailure("Invalid value type.")
+            }
+        }
+    }
+    
+    fileprivate func setter(key: String, value: Any?) {
+        self[key] = value
+        synchronize()
+    }
+    
+    /// Is there a object for specific key exist.
+    public func hasKey(_ key: String) -> Bool {
+        return nil != object(forKey: key)
+    }
+    
 }
