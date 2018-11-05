@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import CoreData
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,12 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // Sets navigationBar's background to a blank/empty image
-        UINavigationBar.appearance().setBackgroundImage(UIImage(),
-                                                        for: .default)
-        // Sets shadow (line below the bar) to a blank image
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().isTranslucent = true
+        GMSServices.provideAPIKey(APIKeys.GoogleAPIKey)
+        GMSPlacesClient.provideAPIKey(APIKeys.GoogleAPIKey)
+
+        // Sets navigationBar's appearance
+        UINavigationBar.appearance().barTintColor = UIColor.init(white: 0, alpha: 0.7)
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        DataOperation.singleton.getObjectContex()
         return true
     }
 

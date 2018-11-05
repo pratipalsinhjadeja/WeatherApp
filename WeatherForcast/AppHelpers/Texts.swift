@@ -17,6 +17,13 @@ struct Texts {
     static let sunset = "Sunset:"
     static let humidity = "Humidity:"
     static let pressure = "Pressure:"
+    
+    //City Weather
+    static let tableEmpty = "No Bookmarked city found. please tap on 'Select City'"
+    static let selectCity = "Select City"
+    
+    //City List
+    static let bookmarkedCity = "Bookmarked City"
 }
 struct NetworkErrors {
     static let title = "Error"

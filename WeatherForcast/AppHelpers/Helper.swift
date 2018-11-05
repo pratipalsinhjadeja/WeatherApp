@@ -19,7 +19,7 @@ class Helper{
         if isMinute == true {
             dateFormatter.dateFormat = "hh:MM a"
         }else{
-            dateFormatter.dateFormat = "h a"
+            dateFormatter.dateFormat = "hh a"
         }
         return dateFormatter.string(from: date)
     }
@@ -70,9 +70,34 @@ class Helper{
     static func getWind(degrees: Double, speed: Double) -> String {
         return "\(Helper.windDirection(degrees: degrees)) \(speed) km/hr"
     }
+    
+    static func barButtonItem(selector: Selector, controller: UIViewController, image: UIImage) -> UIBarButtonItem {
+        let barButton = UIButton(type: .custom)
+        barButton.setImage(image, for: .normal)
+        barButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+        barButton.addTarget(controller, action: selector, for: .touchUpInside)
+        let barItem = UIBarButtonItem(customView: barButton)
+        return barItem
+    }
 }
 
 extension UIViewController{
+    
+    func mainStoryboard() -> UIStoryboard {
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        return main
+    }
+    
+    func getNavCityListVC() -> UINavigationController {
+        let nav = self.mainStoryboard().instantiateViewController(withIdentifier: "navCityListVC")
+        return nav as! UINavigationController
+    }
+    
+    func getNavLocationPickerVC() -> UINavigationController {
+        let nav = self.mainStoryboard().instantiateViewController(withIdentifier: "navLocationPickerVC")
+        return nav as! UINavigationController
+    }
+    
     func showBanner(title: String?, message: String, theme: Theme, position: SwiftMessages.PresentationStyle) {
         var config = SwiftMessages.defaultConfig
         config.presentationStyle = position
@@ -91,5 +116,44 @@ extension UIViewController{
             
         }
         SwiftMessages.show(config: config, view: view)
+    }
+}
+
+extension UITableView {
+    
+    func setEmptyMessage(_ message: String, buttonTitle: String, selector: Selector, target: UIViewController) {
+        
+        let vwEmpty = UIView(frame: CGRect(x: 0, y: 0, width: target.view.frame.size.width, height: self.bounds.size.height))
+        vwEmpty.backgroundColor = UIColor.clear
+        
+        let messageLabel = UILabel(frame: CGRect(x: 16, y: vwEmpty.center.y, width: target.view.frame.size.width - 32, height:50))
+        messageLabel.text = message
+        
+        messageLabel.center.x = vwEmpty.center.x
+        messageLabel.textColor = .white
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = .center;
+        
+        messageLabel.font = UIFont.systemFont(ofSize: 19.0)
+        
+        vwEmpty.addSubview(messageLabel)
+        
+        let button:UIButton = UIButton(frame: CGRect(x: 32, y: messageLabel.frame.origin.y + messageLabel.frame.size.height + 20
+            , width: 200, height: 50))
+        button.center.x = vwEmpty.center.x
+        button.backgroundColor = UIColor.black
+        button.setTitle(buttonTitle, for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.addTarget(target, action: selector, for: .touchUpInside)
+        
+        vwEmpty.addSubview(button)
+        
+        self.backgroundView = vwEmpty;
+        self.separatorStyle = .none;
+    }
+    
+    func restore() {
+        self.backgroundView = nil
+        self.separatorStyle = .singleLine
     }
 }

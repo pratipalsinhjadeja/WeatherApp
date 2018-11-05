@@ -10,6 +10,9 @@ target 'WeatherForcast' do
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftMessages'
   pod 'AlamofireImage', '~> 3.4'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
+  
   target 'WeatherForcastTests' do
     inherit! :search_paths
     # Pods for testing
@@ -17,6 +20,8 @@ target 'WeatherForcast' do
     pod 'Alamofire', '~> 4.7'
     pod 'AlamofireImage', '~> 3.4'
     pod 'SwiftMessages'
+    pod 'GoogleMaps'
+    pod 'GooglePlaces'
   end
 
   target 'WeatherForcastUITests' do
@@ -25,6 +30,8 @@ target 'WeatherForcast' do
     pod 'Alamofire', '~> 4.7'
     pod 'AlamofireImage', '~> 3.4'
     pod 'SwiftMessages'
+    pod 'GoogleMaps'
+    pod 'GooglePlaces'
   end
 
 end

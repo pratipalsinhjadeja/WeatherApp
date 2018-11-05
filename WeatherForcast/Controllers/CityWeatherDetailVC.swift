@@ -8,6 +8,8 @@
 
 import UIKit
 import Alamofire
+import CoreLocation
+
 
 struct ExtendedDetail {
     let title: String
@@ -25,6 +27,12 @@ class CityWeatherDetailVC: UIViewController {
     @IBOutlet weak var tblWeatherDetails: UITableView!
     
     let apiGroup = DispatchGroup()
+    var cityCoordinate: CLLocationCoordinate2D! {
+        didSet{
+            self.callWeatherAPIs()
+        }
+    }
+    let databaseInstance = DataOperation.singleton
     
     var arrForcast = [WeatherForcast]()
     var objWeatherData: CurrentWeatherRes!
@@ -35,20 +43,20 @@ class CityWeatherDetailVC: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.setupViews()
         
-        self.apiGroup.enter()
-        self.getCurrentWeather()
-        self.apiGroup.enter()
-        self.getForcastWeather()
-        
-        self.apiGroup.notify(queue: .main) { [weak self] in
-            self?.tblWeatherDetails.reloadData()
+        //Check for stored city
+        let cityRecords = self.databaseInstance.getAllCities()
+        if let cityQueryRecords = cityRecords, cityQueryRecords.count>0 {
+            
+            let city = cityQueryRecords.first!
+            self.cityCoordinate = CLLocationCoordinate2D(latitude: city.latitude, longitude: city.longitude)
         }
     }
     
     func setupViews() {
+        self.tblWeatherDetails.allowsSelection = false
         self.tblWeatherDetails.backgroundColor = UIColor.clear
         self.tblWeatherDetails.tableFooterView = UIView()
-        
+    
         self.lblDay.font = UIFont.boldSystemFont(ofSize: 18)
         self.lblMaxTemp.font = UIFont.systemFont(ofSize: 18)
         self.lblMinTemp.font = UIFont.systemFont(ofSize: 18)
@@ -58,6 +66,16 @@ class CityWeatherDetailVC: UIViewController {
         self.lblMaxTemp.textColor = UIColor.white
     }
     
+    func callWeatherAPIs() {
+        self.apiGroup.enter()
+        self.getCurrentWeather()
+        self.apiGroup.enter()
+        self.getForcastWeather()
+        self.apiGroup.notify(queue: .main) { [weak self] in
+            self?.tblWeatherDetails.reloadData()
+            self?.setupHeaderView()
+        }
+    }
     func createExtendedDetailModels() {
         
         var objValue = Helper.getTemp(temperature: self.objWeatherData.main.temp_max)
@@ -92,14 +110,58 @@ class CityWeatherDetailVC: UIViewController {
     }
     
     func setupHeaderView() {
-        self.lblCity.text = self.objWeatherData.name
-        self.lblTemp.text = Helper.getTemp(temperature: self.objWeatherData.main.temp)
-        if let objWeather = self.objWeatherData.weather.first {
-            self.lblWeatherCondition.text = objWeather.main
+        DispatchQueue.main.async {
+            self.lblCity.text = self.objWeatherData.name
+            self.lblTemp.text = Helper.getTemp(temperature: self.objWeatherData.main.temp)
+            if let objWeather = self.objWeatherData.weather.first {
+                self.lblWeatherCondition.text = objWeather.main
+            }
+            self.lblDay.text = Helper.getDayName(timeInterval: self.objWeatherData?.dt ?? 0)
+            self.lblMaxTemp.text = Helper.getTemp(temperature: self.objWeatherData.main.temp_max)
+            self.lblMinTemp.text = Helper.getTemp(temperature: self.objWeatherData.main.temp_min)
         }
-        self.lblDay.text = Helper.getDayName(timeInterval: self.objWeatherData?.dt ?? 0)
-        self.lblMaxTemp.text = Helper.getTemp(temperature: self.objWeatherData.main.temp_max)
-        self.lblMinTemp.text = Helper.getTemp(temperature: self.objWeatherData.main.temp_min)
+    }
+    
+    func insertUpdateCity()
+    {
+        do {
+            let predicate = NSPredicate(format: "cityId == %d", self.objWeatherData.id)
+            let records = self.databaseInstance.dbManager.getRecordsByPredicate(type: City.self, predicate: predicate)
+            
+            if let dbRecords = records, dbRecords.count > 0 {
+                let first = dbRecords.first!
+                 try self.databaseInstance.updateCity(response: self.objWeatherData, categoryDB: first)
+            }else{
+                _ =  try self.databaseInstance.addCity(response: self.objWeatherData)
+            }
+        }catch{
+            print(error.localizedDescription)
+        }
+    }
+    @IBAction func btnListTapped(_ sender: UIBarButtonItem) {
+        let vc = self.getNavCityListVC()
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func selectCityTapped() {
+        let vc = self.getNavLocationPickerVC()
+        let locationVC: LocationPickerVC = vc.viewControllers.first! as! LocationPickerVC
+        locationVC.delegate = self
+        self.present(vc, animated: true, completion: nil)
+    }
+}
+
+//MARK: LocationPickerDelegate
+extension CityWeatherDetailVC: LocationPickerDelegate{
+    func selectedCity(coordinate: CLLocationCoordinate2D) {
+        self.cityCoordinate = coordinate
+    }
+}
+
+//MARK: City List Delegate
+extension CityWeatherDetailVC: UpdateCityWeatherDelegate{
+    func updateCityWeatherController(coordinate: CLLocationCoordinate2D) {
+        self.cityCoordinate = coordinate
     }
 }
 
@@ -107,7 +169,8 @@ class CityWeatherDetailVC: UIViewController {
 extension CityWeatherDetailVC {
     func getCurrentWeather()
     {
-        let weatherReq = CurrentWeatherReq(lat: 23.0225, lon: 72.5714, unit: "metric")
+        //23.0225 72.5714
+        let weatherReq = CurrentWeatherReq(lat:self.cityCoordinate.latitude , lon:self.cityCoordinate.longitude , unit: "metric")
         print(weatherReq.getParameters())
         DataManager.singleton.getRequest(WebAPI.TodayForcast, params: weatherReq.getParameters())
         { (response: Result<CurrentWeatherRes>) in
@@ -118,8 +181,8 @@ extension CityWeatherDetailVC {
                 print(value)
                 self.objWeatherData = value
                 if self.objWeatherData.cod == 200{
-                    self.setupHeaderView()
                     self.createExtendedDetailModels()
+                    self.insertUpdateCity()
                 }
                 else{
                     self.showBanner(title: nil, message: NetworkErrors.noResponseFound, theme: .error, position: .center)
@@ -135,7 +198,9 @@ extension CityWeatherDetailVC {
     
     func getForcastWeather()
     {
-        let weatherReq = CurrentWeatherReq(lat: 23.0225, lon: 72.5714, unit: "metric")
+        //23.0225 72.5714
+        let weatherReq = CurrentWeatherReq(lat:self.cityCoordinate.latitude, lon:self.cityCoordinate.longitude, unit: "metric")
+        
         print(weatherReq.getParameters())
         DataManager.singleton.getRequest(WebAPI.FiveDaysForcast, params: weatherReq.getParameters())
         { (response: Result<ForcastWeatherRes>) in
@@ -161,6 +226,8 @@ extension CityWeatherDetailVC {
         }
     }
 }
+
+
 //MARK: WeatherDetailTableview Delegate & DataSource
 extension CityWeatherDetailVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -170,6 +237,11 @@ extension CityWeatherDetailVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
+        }
+        if self.arrExtendedInfo.count == 0 {
+            self.tblWeatherDetails.setEmptyMessage(Texts.tableEmpty, buttonTitle: Texts.selectCity, selector: #selector(self.selectCityTapped), target: self)
+        } else {
+            self.tblWeatherDetails.restore()
         }
         return self.arrExtendedInfo.count
     }
@@ -191,15 +263,12 @@ extension CityWeatherDetailVC: UITableViewDelegate, UITableViewDataSource {
             return cell
             
         }
-        
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 100
         }
-        
         return 34
     }
     

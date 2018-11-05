@@ -9,7 +9,8 @@
 import Foundation
 
 struct APIKeys{
-     static let WeatherKey = "c6e381d8c7ff98f0fee43775817cf6ad"
+    static let WeatherKey = "c6e381d8c7ff98f0fee43775817cf6ad"
+    static let GoogleAPIKey = "AIzaSyDqWAk33T3F933ImZ0FfwqkzD_A7R1wUks"
 }
 
 struct WebAPI {
