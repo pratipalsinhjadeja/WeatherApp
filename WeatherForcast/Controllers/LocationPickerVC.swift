@@ -59,9 +59,7 @@ class LocationPickerVC: UIViewController {
         })
     }
     @IBAction func btnCloseTapped(){
-        self.dismiss(animated: true) {
-            
-        }
+        self.dismiss(animated: true)
     }
     @IBAction func searchBtnTapped(_ sender: UIButton!){
         let acController = GMSAutocompleteViewController()

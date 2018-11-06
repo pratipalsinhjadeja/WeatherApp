@@ -493,16 +493,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6ew-sA-ssO"/>
                     </view>
-                    <navigationItem key="navigationItem" id="hMz-TY-sZ4">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="hv6-7I-8Bm">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="btnAddTapped" destination="dCJ-qV-TdQ" id="1nj-db-bXu"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="hMz-TY-sZ4"/>
                     <connections>
-                        <outlet property="btnAdd" destination="hv6-7I-8Bm" id="Nm8-KX-9BP"/>
                         <outlet property="tblCities" destination="gsb-CN-vaj" id="4yj-Md-rW2"/>
                     </connections>
                 </viewController>

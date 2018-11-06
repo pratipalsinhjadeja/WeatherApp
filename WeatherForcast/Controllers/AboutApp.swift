@@ -38,9 +38,7 @@ class AboutApp: UIViewController {
     }
     
     @objc func btnCloseTapped(){
-        self.dismiss(animated: true) {
-            
-        }
+        self.dismiss(animated: true)
     }
 
     /*

@@ -193,4 +193,30 @@ class CityWeatherDetailTests: XCTestCase {
         waitForExpectations(timeout: 5.0) { (_) in
         }
     }
+    func testLoadForcastCellCollectionViewNotNil(){
+        self.vcDetail.tblWeatherDetails.reloadData()
+        let cell: ForcastTableCell = self.vcDetail.tableView(self.vcDetail.tblWeatherDetails, cellForRowAt: IndexPath(row: 0, section: 0)) as! ForcastTableCell
+        XCTAssertNotNil(cell.cvForcast)
+    }
+    
+    func testLoadForcastCellDataAssigned(){
+        
+        let jsonData = self.loadJson(fileName: "forcastWeather")
+        let jsonDecoder = JSONDecoder()
+        do {
+            let forcastWeatherRes = try jsonDecoder.decode(ForcastWeatherRes.self, from: jsonData!)
+            self.vcDetail.arrForcast = forcastWeatherRes.list
+            
+            self.vcDetail.tblWeatherDetails.reloadData()
+            let cell: ForcastTableCell = self.vcDetail.tableView(self.vcDetail.tblWeatherDetails, cellForRowAt: IndexPath(row: 0, section: 0)) as! ForcastTableCell
+            
+            let numberOfItems = cell.cvForcast.numberOfItems(inSection: 0)
+            
+            XCTAssertEqual(numberOfItems, forcastWeatherRes.list.count)
+            
+        } catch  {
+            XCTFail()
+        }
+        
+    }
 }

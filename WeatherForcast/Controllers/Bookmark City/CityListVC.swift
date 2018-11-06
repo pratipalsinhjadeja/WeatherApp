@@ -16,7 +16,6 @@ protocol UpdateCityWeatherDelegate {
 }
 
 class CityListVC: UIViewController {
-    @IBOutlet weak var btnAdd: UIBarButtonItem!
     @IBOutlet weak var tblCities: UITableView!
     let databaseInstance = DataOperation.singleton
     var arrCities = [City]()
@@ -50,9 +49,7 @@ class CityListVC: UIViewController {
     }
     
     @IBAction func btnCloseTapped(){
-        self.dismiss(animated: true) {
-            
-        }
+        self.dismiss(animated: true)
     }
     
     func fetchBookmarkedCities(){

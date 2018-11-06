@@ -31,9 +31,7 @@ class SettingsVC: UIViewController {
     }
     
     @IBAction func btnCloseTapped(){
-        self.dismiss(animated: true) {
-            
-        }
+        self.dismiss(animated: true)
     }
 
 }
