@@ -14,12 +14,23 @@
 		626FB187218D80290002EAF5 /* CommonParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626FB186218D80280002EAF5 /* CommonParameters.swift */; };
 		626FB189218D816C0002EAF5 /* CurrentWeatherReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626FB188218D816C0002EAF5 /* CurrentWeatherReq.swift */; };
 		626FB18B218D883E0002EAF5 /* GroupCityReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626FB18A218D883E0002EAF5 /* GroupCityReq.swift */; };
+		62C8C21021915B79008C7E09 /* CityTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C8C20E21915B79008C7E09 /* CityTableCell.swift */; };
+		62C8C21121915B79008C7E09 /* CityListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C8C20F21915B79008C7E09 /* CityListVC.swift */; };
+		62C8C215219174F1008C7E09 /* AboutApp.html in Resources */ = {isa = PBXBuildFile; fileRef = 62C8C214219174F1008C7E09 /* AboutApp.html */; };
+		62C8C2172191A0F3008C7E09 /* SettingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C8C2162191A0F3008C7E09 /* SettingTests.swift */; };
+		62C8C2192191A146008C7E09 /* MockUpdateCitySettingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C8C2182191A146008C7E09 /* MockUpdateCitySettingDelegate.swift */; };
+		62C8C2212191A496008C7E09 /* CityWeatherDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C8C21A2191A495008C7E09 /* CityWeatherDetailTests.swift */; };
+		62C8C2222191A496008C7E09 /* DatabaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C8C21B2191A495008C7E09 /* DatabaseTest.swift */; };
+		62C8C2232191A496008C7E09 /* CurrentWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = 62C8C21C2191A495008C7E09 /* CurrentWeather.json */; };
+		62C8C2242191A496008C7E09 /* cityGroup.json in Resources */ = {isa = PBXBuildFile; fileRef = 62C8C21D2191A495008C7E09 /* cityGroup.json */; };
+		62C8C2252191A496008C7E09 /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C8C21E2191A495008C7E09 /* MockViewController.swift */; };
+		62C8C2262191A496008C7E09 /* forcastWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = 62C8C21F2191A495008C7E09 /* forcastWeather.json */; };
+		62C8C2272191A496008C7E09 /* HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C8C2202191A496008C7E09 /* HelperTests.swift */; };
 		C6AF0857219038340001C059 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AF0856219038340001C059 /* WeatherData.swift */; };
 		C6AF0859219038F40001C059 /* DataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AF0858219038F40001C059 /* DataOperation.swift */; };
 		C6AF087121904F310001C059 /* GroupCityRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AF087021904F310001C059 /* GroupCityRes.swift */; };
 		C6AF08742190526B0001C059 /* City+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AF08722190526A0001C059 /* City+CoreDataClass.swift */; };
 		C6AF08752190526B0001C059 /* City+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AF08732190526A0001C059 /* City+CoreDataProperties.swift */; };
-		C6AF08772190814E0001C059 /* CityTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AF08762190814E0001C059 /* CityTableCell.swift */; };
 		C6BFDB2A218D62C700097D30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BFDB29218D62C700097D30 /* AppDelegate.swift */; };
 		C6BFDB2C218D62C700097D30 /* CityWeatherDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BFDB2B218D62C700097D30 /* CityWeatherDetailVC.swift */; };
 		C6BFDB2F218D62C700097D30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6BFDB2D218D62C700097D30 /* Main.storyboard */; };
@@ -37,7 +48,6 @@
 		C6D555BD218F319D001994FF /* ForcastDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D555BC218F319D001994FF /* ForcastDetailCell.swift */; };
 		C6D555BF218F3354001994FF /* WeatherExtendedInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D555BE218F3354001994FF /* WeatherExtendedInfoCell.swift */; };
 		C6F84E692190023200D5AF54 /* LocationPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F84E682190023200D5AF54 /* LocationPickerVC.swift */; };
-		C6F84E6B219008BE00D5AF54 /* CityListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F84E6A219008BE00D5AF54 /* CityListVC.swift */; };
 		C6F84E6D219008E900D5AF54 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F84E6C219008E900D5AF54 /* SettingsVC.swift */; };
 		C6F84E6F219008FF00D5AF54 /* AboutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F84E6E219008FF00D5AF54 /* AboutApp.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +77,18 @@
 		626FB186218D80280002EAF5 /* CommonParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonParameters.swift; sourceTree = "<group>"; };
 		626FB188218D816C0002EAF5 /* CurrentWeatherReq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherReq.swift; sourceTree = "<group>"; };
 		626FB18A218D883E0002EAF5 /* GroupCityReq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCityReq.swift; sourceTree = "<group>"; };
+		62C8C20E21915B79008C7E09 /* CityTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityTableCell.swift; sourceTree = "<group>"; };
+		62C8C20F21915B79008C7E09 /* CityListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityListVC.swift; sourceTree = "<group>"; };
+		62C8C214219174F1008C7E09 /* AboutApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AboutApp.html; sourceTree = "<group>"; };
+		62C8C2162191A0F3008C7E09 /* SettingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTests.swift; sourceTree = "<group>"; };
+		62C8C2182191A146008C7E09 /* MockUpdateCitySettingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpdateCitySettingDelegate.swift; sourceTree = "<group>"; };
+		62C8C21A2191A495008C7E09 /* CityWeatherDetailTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityWeatherDetailTests.swift; sourceTree = "<group>"; };
+		62C8C21B2191A495008C7E09 /* DatabaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseTest.swift; sourceTree = "<group>"; };
+		62C8C21C2191A495008C7E09 /* CurrentWeather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CurrentWeather.json; sourceTree = "<group>"; };
+		62C8C21D2191A495008C7E09 /* cityGroup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cityGroup.json; sourceTree = "<group>"; };
+		62C8C21E2191A495008C7E09 /* MockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
+		62C8C21F2191A495008C7E09 /* forcastWeather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = forcastWeather.json; sourceTree = "<group>"; };
+		62C8C2202191A496008C7E09 /* HelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperTests.swift; sourceTree = "<group>"; };
 		7AC4C85D8CEA6CB122A74979 /* Pods-WeatherForcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherForcast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherForcast/Pods-WeatherForcast.debug.xcconfig"; sourceTree = "<group>"; };
 		7D585A7DE29A289526725148 /* Pods-WeatherForcastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherForcastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherForcastTests/Pods-WeatherForcastTests.release.xcconfig"; sourceTree = "<group>"; };
 		A8F9DD6E7855B694EE010D3A /* Pods-WeatherForcastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherForcastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherForcastTests/Pods-WeatherForcastTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,7 +98,6 @@
 		C6AF087021904F310001C059 /* GroupCityRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCityRes.swift; sourceTree = "<group>"; };
 		C6AF08722190526A0001C059 /* City+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "City+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C6AF08732190526A0001C059 /* City+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "City+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C6AF08762190814E0001C059 /* CityTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableCell.swift; sourceTree = "<group>"; };
 		C6BFDB26218D62C700097D30 /* WeatherForcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherForcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6BFDB29218D62C700097D30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6BFDB2B218D62C700097D30 /* CityWeatherDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherDetailVC.swift; sourceTree = "<group>"; };
@@ -100,7 +121,6 @@
 		C6D555BC218F319D001994FF /* ForcastDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForcastDetailCell.swift; sourceTree = "<group>"; };
 		C6D555BE218F3354001994FF /* WeatherExtendedInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherExtendedInfoCell.swift; sourceTree = "<group>"; };
 		C6F84E682190023200D5AF54 /* LocationPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerVC.swift; sourceTree = "<group>"; };
-		C6F84E6A219008BE00D5AF54 /* CityListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListVC.swift; sourceTree = "<group>"; };
 		C6F84E6C219008E900D5AF54 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		C6F84E6E219008FF00D5AF54 /* AboutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutApp.swift; sourceTree = "<group>"; };
 		CBD30717C45A37422D4D4F52 /* Pods_WeatherForcastUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherForcastUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,12 +176,31 @@
 		626FB185218D7F7D0002EAF5 /* RequestModels */ = {
 			isa = PBXGroup;
 			children = (
-				C6D555BC218F319D001994FF /* ForcastDetailCell.swift */,
 				626FB186218D80280002EAF5 /* CommonParameters.swift */,
 				626FB188218D816C0002EAF5 /* CurrentWeatherReq.swift */,
 				626FB18A218D883E0002EAF5 /* GroupCityReq.swift */,
 			);
 			path = RequestModels;
+			sourceTree = "<group>";
+		};
+		62C8C20C21915349008C7E09 /* CityWeather */ = {
+			isa = PBXGroup;
+			children = (
+				C6BFDB2B218D62C700097D30 /* CityWeatherDetailVC.swift */,
+				C6D555BC218F319D001994FF /* ForcastDetailCell.swift */,
+				C6D555B8218F30C5001994FF /* ForcastTableCell.swift */,
+				C6D555BE218F3354001994FF /* WeatherExtendedInfoCell.swift */,
+			);
+			path = CityWeather;
+			sourceTree = "<group>";
+		};
+		62C8C20D21915362008C7E09 /* Bookmark City */ = {
+			isa = PBXGroup;
+			children = (
+				62C8C20F21915B79008C7E09 /* CityListVC.swift */,
+				62C8C20E21915B79008C7E09 /* CityTableCell.swift */,
+			);
+			path = "Bookmark City";
 			sourceTree = "<group>";
 		};
 		93CD39D780C47FBA0D54594F /* Pods */ = {
@@ -219,6 +258,7 @@
 				626FB181218D73DF0002EAF5 /* App Constants */,
 				C6AF08552190373E0001C059 /* CoreData */,
 				C6D555B3218F092E001994FF /* Controllers */,
+				62C8C214219174F1008C7E09 /* AboutApp.html */,
 				C6BFDB29218D62C700097D30 /* AppDelegate.swift */,
 				C6BFDB2D218D62C700097D30 /* Main.storyboard */,
 				C6BFDB33218D62C800097D30 /* Assets.xcassets */,
@@ -233,6 +273,15 @@
 			children = (
 				C6BFDB41218D62C800097D30 /* WeatherForcastTests.swift */,
 				C6BFDB43218D62C800097D30 /* Info.plist */,
+				62C8C21D2191A495008C7E09 /* cityGroup.json */,
+				62C8C21A2191A495008C7E09 /* CityWeatherDetailTests.swift */,
+				62C8C21C2191A495008C7E09 /* CurrentWeather.json */,
+				62C8C21B2191A495008C7E09 /* DatabaseTest.swift */,
+				62C8C21F2191A495008C7E09 /* forcastWeather.json */,
+				62C8C2202191A496008C7E09 /* HelperTests.swift */,
+				62C8C21E2191A495008C7E09 /* MockViewController.swift */,
+				62C8C2162191A0F3008C7E09 /* SettingTests.swift */,
+				62C8C2182191A146008C7E09 /* MockUpdateCitySettingDelegate.swift */,
 			);
 			path = WeatherForcastTests;
 			sourceTree = "<group>";
@@ -268,12 +317,9 @@
 		C6D555B3218F092E001994FF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C6BFDB2B218D62C700097D30 /* CityWeatherDetailVC.swift */,
-				C6D555B8218F30C5001994FF /* ForcastTableCell.swift */,
-				C6D555BE218F3354001994FF /* WeatherExtendedInfoCell.swift */,
+				62C8C20D21915362008C7E09 /* Bookmark City */,
+				62C8C20C21915349008C7E09 /* CityWeather */,
 				C6F84E682190023200D5AF54 /* LocationPickerVC.swift */,
-				C6F84E6A219008BE00D5AF54 /* CityListVC.swift */,
-				C6AF08762190814E0001C059 /* CityTableCell.swift */,
 				C6F84E6C219008E900D5AF54 /* SettingsVC.swift */,
 				C6F84E6E219008FF00D5AF54 /* AboutApp.swift */,
 			);
@@ -403,6 +449,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62C8C215219174F1008C7E09 /* AboutApp.html in Resources */,
 				C6BFDB37218D62C800097D30 /* LaunchScreen.storyboard in Resources */,
 				C6BFDB34218D62C800097D30 /* Assets.xcassets in Resources */,
 				C6BFDB2F218D62C700097D30 /* Main.storyboard in Resources */,
@@ -413,6 +460,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62C8C2242191A496008C7E09 /* cityGroup.json in Resources */,
+				62C8C2262191A496008C7E09 /* forcastWeather.json in Resources */,
+				62C8C2232191A496008C7E09 /* CurrentWeather.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,7 +706,6 @@
 				C6AF08752190526B0001C059 /* City+CoreDataProperties.swift in Sources */,
 				C6AF08742190526B0001C059 /* City+CoreDataClass.swift in Sources */,
 				C6D555AD218EBC39001994FF /* DataManager.swift in Sources */,
-				C6AF08772190814E0001C059 /* CityTableCell.swift in Sources */,
 				C6D555BD218F319D001994FF /* ForcastDetailCell.swift in Sources */,
 				C6D555BF218F3354001994FF /* WeatherExtendedInfoCell.swift in Sources */,
 				C6AF087121904F310001C059 /* GroupCityRes.swift in Sources */,
@@ -665,10 +714,11 @@
 				C6D555B5218F1AE7001994FF /* Texts.swift in Sources */,
 				626FB187218D80290002EAF5 /* CommonParameters.swift in Sources */,
 				C6F84E6F219008FF00D5AF54 /* AboutApp.swift in Sources */,
+				62C8C21121915B79008C7E09 /* CityListVC.swift in Sources */,
+				62C8C21021915B79008C7E09 /* CityTableCell.swift in Sources */,
 				C6BFDB2C218D62C700097D30 /* CityWeatherDetailVC.swift in Sources */,
 				C6BFDB32218D62C700097D30 /* WeatherForcast.xcdatamodeld in Sources */,
 				626FB189218D816C0002EAF5 /* CurrentWeatherReq.swift in Sources */,
-				C6F84E6B219008BE00D5AF54 /* CityListVC.swift in Sources */,
 				C6BFDB2A218D62C700097D30 /* AppDelegate.swift in Sources */,
 				C6D555B2218EE724001994FF /* Helper.swift in Sources */,
 				626FB183218D74280002EAF5 /* AppConstants.swift in Sources */,
@@ -681,6 +731,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62C8C2252191A496008C7E09 /* MockViewController.swift in Sources */,
+				62C8C2192191A146008C7E09 /* MockUpdateCitySettingDelegate.swift in Sources */,
+				62C8C2172191A0F3008C7E09 /* SettingTests.swift in Sources */,
+				62C8C2212191A496008C7E09 /* CityWeatherDetailTests.swift in Sources */,
+				62C8C2222191A496008C7E09 /* DatabaseTest.swift in Sources */,
+				62C8C2272191A496008C7E09 /* HelperTests.swift in Sources */,
 				C6BFDB42218D62C800097D30 /* WeatherForcastTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -871,7 +927,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8N9YWC6Z6P;
 				INFOPLIST_FILE = WeatherForcast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -880,7 +936,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.weather.WeatherForcast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = EPWildcardDevelopmentProfile;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -892,7 +948,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8N9YWC6Z6P;
 				INFOPLIST_FILE = WeatherForcastTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -901,6 +958,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.weather.WeatherForcastTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherForcast.app/WeatherForcast";
@@ -913,7 +971,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8N9YWC6Z6P;
 				INFOPLIST_FILE = WeatherForcastTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -922,6 +981,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.weather.WeatherForcastTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherForcast.app/WeatherForcast";
@@ -933,7 +993,8 @@
 			baseConfigurationReference = 039B38133E68D13565748E1C /* Pods-WeatherForcastUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8N9YWC6Z6P;
 				INFOPLIST_FILE = WeatherForcastUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -942,6 +1003,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.weather.WeatherForcastUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = EPWildcardDevelopmentProfile;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = WeatherForcast;
@@ -953,7 +1015,8 @@
 			baseConfigurationReference = 10D1DD0ED2B7B631516D51AC /* Pods-WeatherForcastUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8N9YWC6Z6P;
 				INFOPLIST_FILE = WeatherForcastUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -962,6 +1025,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.weather.WeatherForcastUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = EPWildcardDevelopmentProfile;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = WeatherForcast;

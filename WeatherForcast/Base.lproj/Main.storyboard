@@ -257,7 +257,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="6BY-xi-oH1"/>
-                                    <barButtonItem title="About App" id="cDO-nc-dMk"/>
+                                    <barButtonItem title="About App" id="cDO-nc-dMk">
+                                        <connections>
+                                            <action selector="btnAboutAppTapped:" destination="BYZ-38-t0r" id="yNh-5o-0gk"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="HJ8-aA-Sko"/>
                                     <barButtonItem title="Item" image="ic_list" id="hrr-a0-h4M">
                                         <connections>
@@ -405,7 +409,7 @@
         <!--City ListVC-->
         <scene sceneID="1jt-T3-sKq">
             <objects>
-                <viewController storyboardIdentifier="CityListVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dCJ-qV-TdQ" customClass="CityListVC" customModule="WeatherForcast" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CityListVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dCJ-qV-TdQ" customClass="CityListVC" customModule="WeatherForcast" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rtk-Wy-um0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -527,7 +531,7 @@
         <!--SettingsVC-->
         <scene sceneID="UI2-vT-nan">
             <objects>
-                <viewController storyboardIdentifier="SettingsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3ce-Kp-PL1" customClass="SettingsVC" customModule="WeatherForcast" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3ce-Kp-PL1" customClass="SettingsVC" customModule="WeatherForcast" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tCn-Yg-QHD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -602,6 +606,22 @@
             </objects>
             <point key="canvasLocation" x="2402" y="803"/>
         </scene>
+        <!--About App-->
+        <scene sceneID="YgI-yf-Gah">
+            <objects>
+                <viewController storyboardIdentifier="AboutApp" id="ZTL-V4-9jT" customClass="AboutApp" customModule="WeatherForcast" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ezA-kn-AFJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="qdY-Bl-T10"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hyO-uL-lqq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YAg-Hc-Iy9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3268" y="27"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="FCc-0x-sKh">
             <objects>
@@ -619,6 +639,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tqa-bK-yDd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1624.8" y="802.848575712144"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="c6n-5g-uO7">
+            <objects>
+                <navigationController storyboardIdentifier="navAboutApp" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WYW-Vl-l7M" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ssz-d7-fI8">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ZTL-V4-9jT" kind="relationship" relationship="rootViewController" id="v7n-Jh-wO1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XYZ-5T-6Gl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2496.8000000000002" y="26.53673163418291"/>
         </scene>
     </scenes>
     <resources>

@@ -99,7 +99,7 @@ extension UIViewController{
     }
     
     func getNavAboutAppVC() -> UINavigationController {
-        let nav = self.mainStoryboard().instantiateViewController(withIdentifier: "navAboutAppVC")
+        let nav = self.mainStoryboard().instantiateViewController(withIdentifier: "navAboutApp")
         return nav as! UINavigationController
     }
     func getNavSettingsVC() -> UINavigationController {
@@ -130,7 +130,7 @@ extension UIViewController{
 
 extension UITableView {
     
-    func setEmptyMessage(_ message: String, buttonTitle: String, selector: Selector, target: UIViewController) {
+    func setEmptyMessage(_ message: String, buttonTitle: String, selector: Selector, labelColor: UIColor, target: UIViewController) {
         
         let vwEmpty = UIView(frame: CGRect(x: 0, y: 0, width: target.view.frame.size.width, height: self.bounds.size.height))
         vwEmpty.backgroundColor = UIColor.clear
@@ -139,7 +139,7 @@ extension UITableView {
         messageLabel.text = message
         
         messageLabel.center.x = vwEmpty.center.x
-        messageLabel.textColor = .white
+        messageLabel.textColor = labelColor
         messageLabel.numberOfLines = 0;
         messageLabel.textAlignment = .center;
         

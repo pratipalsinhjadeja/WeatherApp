@@ -9,6 +9,12 @@
 import Foundation
 
 struct Texts {
+    
+    static let closeTitle = "Close"
+    static let yesTitle = "Yes"
+    static let noTitle = "No"
+    static let dismissTitle = "Dismiss"
+    
     //City Weather Detail
     static let wind = "Wind:"
     static let rainChances = "Chances of Rain:"
@@ -17,6 +23,9 @@ struct Texts {
     static let sunset = "Sunset:"
     static let humidity = "Humidity:"
     static let pressure = "Pressure:"
+    
+    //location Picker
+    static let selectValidLocation = "Please select valid location"
     
     //City Weather
     static let tableEmpty = "No Bookmarked city found. please tap on 'Select City'"
@@ -35,6 +44,9 @@ struct Texts {
     static let removeAllCities = "Remove all cities"
     static let removeAllInfo = "are you sure?"
     static let selectUnit = "Select Preffered Unit"
+    
+    //About App
+    static let WeatherForcast = "Weather Forcast"
 }
 struct NetworkErrors {
     static let title = "Error"

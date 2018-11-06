@@ -20,11 +20,13 @@ class LocationPickerVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Select City"
+        self.title = Texts.selectCity
         
         self.setupMapwith(location: self.selectedCoordinates)
         let searchButton =  Helper.barButtonItem(selector: #selector(self.searchBtnTapped(_:)), controller: self, image: UIImage(named: "search")!)
         self.navigationItem.rightBarButtonItem = searchButton
+        let btnClose =  Helper.barButtonItem(selector: #selector(self.btnCloseTapped), controller: self, image: UIImage(named: "close")!)
+        self.navigationItem.leftBarButtonItem = btnClose
     }
     
     func setupMapwith(location: CLLocationCoordinate2D){
@@ -56,7 +58,11 @@ class LocationPickerVC: UIViewController {
             }
         })
     }
-    
+    @IBAction func btnCloseTapped(){
+        self.dismiss(animated: true) {
+            
+        }
+    }
     @IBAction func searchBtnTapped(_ sender: UIButton!){
         let acController = GMSAutocompleteViewController()
         acController.delegate = self
@@ -68,7 +74,7 @@ class LocationPickerVC: UIViewController {
             self.performSegue(withIdentifier:Texts.unwindSeguetoWeather, sender: self)
         }
         else {
-            self.showBanner(title: "Select City", message: "Please select valid location", theme: .error, position: .center)
+            self.showBanner(title: Texts.selectCity, message: Texts.selectValidLocation, theme: .error, position: .center)
         }
     }
     

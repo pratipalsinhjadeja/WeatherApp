@@ -9,7 +9,7 @@
 import UIKit
 
 protocol UpdateCitySettingDelegate {
-    func refreshWeatherData()
+    func refreshWeatherData(_ viewController: SettingsVC , isRemoveData: Bool)
 }
 
 class SettingsVC: UIViewController {
@@ -24,8 +24,8 @@ class SettingsVC: UIViewController {
     func setupViews(){
         self.navigationItem.title = Texts.AppSettings
         
-        let backButton =  Helper.barButtonItem(selector: #selector(self.btnCloseTapped), controller: self, image: UIImage(named: "close")!)
-        self.navigationItem.leftBarButtonItem = backButton
+        let btnClose =  Helper.barButtonItem(selector: #selector(self.btnCloseTapped), controller: self, image: UIImage(named: "close")!)
+        self.navigationItem.leftBarButtonItem = btnClose
         
         self.tblSettings.tableFooterView = UIView()
     }
@@ -38,22 +38,23 @@ class SettingsVC: UIViewController {
 
 }
 
-
 extension SettingsVC {
     func showAlert(){
         
         let alertController = UIAlertController(title: Texts.removeAllCities, message: Texts.removeAllInfo, preferredStyle: .alert)
-        let btnYes = UIAlertAction(title: "YES", style: .default) { (action:UIAlertAction) in
+        let btnYes = UIAlertAction(title: Texts.yesTitle, style: .default) { (action:UIAlertAction) in
             
             do{
                 try DataOperation.singleton.deleteAllCities()
-                self.callWeatherDetailVCDelegate()
+                self.dismiss(animated: true, completion: {
+                    self.callWeatherDetailVCDelegate(isRemoveData: true)
+                })
             }catch{
                 print(error.localizedDescription)
             }
         }
         
-        let btnNo = UIAlertAction(title: "NO", style: .cancel) { (action:UIAlertAction) in
+        let btnNo = UIAlertAction(title: Texts.noTitle, style: .cancel) { (action:UIAlertAction) in
         }
         
         alertController.addAction(btnYes)
@@ -67,22 +68,22 @@ extension SettingsVC {
         alert.addAction(UIAlertAction(title: WeatherUnits.Imparical.rawValue, style: .default , handler:{ (UIAlertAction)in
             UserDefaults.standard.setValue(WeatherUnits.Imparical.rawValue, forKey: UnitKey.weatherUnitKey)
             self.updateRow()
-            self.callWeatherDetailVCDelegate()
+            self.callWeatherDetailVCDelegate(isRemoveData: false)
         }))
         
         alert.addAction(UIAlertAction(title: WeatherUnits.Standard.rawValue, style: .default , handler:{ (UIAlertAction)in
             UserDefaults.standard.setValue(WeatherUnits.Standard.rawValue, forKey: UnitKey.weatherUnitKey)
             self.updateRow()
-            self.callWeatherDetailVCDelegate()
+            self.callWeatherDetailVCDelegate(isRemoveData: false)
         }))
         
         alert.addAction(UIAlertAction(title: WeatherUnits.Metric.rawValue, style: .default , handler:{ (UIAlertAction)in
             UserDefaults.standard.setValue(WeatherUnits.Metric.rawValue, forKey: UnitKey.weatherUnitKey)
             self.updateRow()
-            self.callWeatherDetailVCDelegate()
+            self.callWeatherDetailVCDelegate(isRemoveData: false)
         }))
         
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: Texts.dismissTitle, style: .cancel, handler:{ (UIAlertAction)in
             
         }))
         
@@ -95,8 +96,8 @@ extension SettingsVC {
         self.tblSettings.endUpdates()
     }
     
-    func callWeatherDetailVCDelegate(){
-        self.delegate?.refreshWeatherData()
+    func callWeatherDetailVCDelegate(isRemoveData: Bool){
+        self.delegate?.refreshWeatherData(self, isRemoveData: isRemoveData)
     }
 }
 
@@ -146,7 +147,7 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 0 {
             self.displayWeatherUnits()
         }

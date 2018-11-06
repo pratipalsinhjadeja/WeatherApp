@@ -26,6 +26,6 @@ struct UnitKey {
 }
 public enum WeatherUnits: String{
     case Standard = "Standard"
-    case Metric = "metric"
-    case Imparical = "imperial"
+    case Metric = "Metric"
+    case Imparical = "Imperial"
 }

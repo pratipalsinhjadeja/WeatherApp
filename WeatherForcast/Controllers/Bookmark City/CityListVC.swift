@@ -37,14 +37,22 @@ class CityListVC: UIViewController {
         } else {
             tblCities.addSubview(refreshControl)
         }
-        
+        self.tblCities.tableFooterView = UIView()
         self.navigationItem.title = Texts.bookmarkedCity
         let addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.btnAddTapped))
         self.navigationItem.rightBarButtonItem = addBarButton
+        let btnClose =  Helper.barButtonItem(selector: #selector(self.btnCloseTapped), controller: self, image: UIImage(named: "close")!)
+        self.navigationItem.leftBarButtonItem = btnClose
     }
     @IBAction func btnAddTapped(){
         let vc = self.getNavLocationPickerVC()
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func btnCloseTapped(){
+        self.dismiss(animated: true) {
+            
+        }
     }
     
     func fetchBookmarkedCities(){
@@ -53,10 +61,6 @@ class CityListVC: UIViewController {
             self.arrCities = cityQueryRecords
         }
         self.tblCities.reloadData()
-    }
-    
-    func callGroupedCityWeather(){
-        
     }
 }
 
@@ -124,7 +128,7 @@ extension CityListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.arrCities.count == 0 {
-            self.tblCities.setEmptyMessage(Texts.tableEmpty, buttonTitle: Texts.selectCity, selector: #selector(self.btnAddTapped), target: self)
+            self.tblCities.setEmptyMessage(Texts.tableEmpty, buttonTitle: Texts.selectCity, selector: #selector(self.btnAddTapped), labelColor:.black, target: self)
         } else {
             self.tblCities.restore()
         }

@@ -15,16 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         GMSServices.provideAPIKey(APIKeys.GoogleAPIKey)
         GMSPlacesClient.provideAPIKey(APIKeys.GoogleAPIKey)
         
-        /*if UserDefaults.standard.getDefaultUnit() == nil {
-            UserDefaults.standard.setDefaultUnit(value: Unit.Metric)
-        }*/
         if UserDefaults.standard.value(forKey: UnitKey.weatherUnitKey) == nil {
             UserDefaults.standard.set(WeatherUnits.Metric.rawValue, forKey: UnitKey.weatherUnitKey)
         }

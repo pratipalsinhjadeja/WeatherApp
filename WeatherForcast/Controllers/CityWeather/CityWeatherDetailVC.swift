@@ -51,8 +51,7 @@ class CityWeatherDetailVC: UIViewController {
             self.cityCoordinate = CLLocationCoordinate2D(latitude: city.latitude, longitude: city.longitude)
         }
     }
-    
-    
+
     func setupViews() {
         self.tblWeatherDetails.allowsSelection = false
         self.tblWeatherDetails.backgroundColor = UIColor.clear
@@ -73,8 +72,8 @@ class CityWeatherDetailVC: UIViewController {
         self.apiGroup.enter()
         self.getForcastWeather()
         self.apiGroup.notify(queue: .main) { [weak self] in
-            self?.tblWeatherDetails.reloadData()
             self?.setupHeaderView()
+            self?.tblWeatherDetails.reloadData()
         }
     }
     func createExtendedDetailModels() {
@@ -125,6 +124,22 @@ class CityWeatherDetailVC: UIViewController {
         }
     }
     
+    func clearHeaderViewandDataArrays() {
+        DispatchQueue.main.async {
+            self.lblMinTemp.text = ""
+            self.lblMaxTemp.text = ""
+            self.lblDay.text = ""
+            self.lblWeatherCondition.text = ""
+            self.lblTemp.text = ""
+            self.lblCity.text = ""
+            
+            self.arrForcast.removeAll()
+            self.arrExtendedInfo.removeAll()
+            
+            self.tblWeatherDetails.reloadData()
+        }
+    }
+    
     func insertUpdateCity()
     {
         do {
@@ -154,6 +169,10 @@ class CityWeatherDetailVC: UIViewController {
         settingVC.delegate = self
         self.present(vc, animated: true, completion: nil)
     }
+    @IBAction func btnAboutAppTapped(_ sender: Any){
+        let vc = self.getNavAboutAppVC()
+        self.present(vc, animated: true, completion: nil)
+    }
     @objc func selectCityTapped() {
         let vc = self.getNavLocationPickerVC()
         self.present(vc, animated: true, completion: nil)
@@ -169,8 +188,13 @@ extension CityWeatherDetailVC: UpdateCityWeatherDelegate{
 
 //MARK: Settings Delegate
 extension CityWeatherDetailVC: UpdateCitySettingDelegate {
-    func refreshWeatherData() {
-        self.callWeatherAPIs()
+    func refreshWeatherData(_ viewController: SettingsVC, isRemoveData: Bool)  {
+        switch isRemoveData {
+        case true:
+            self.clearHeaderViewandDataArrays()
+        default:
+            self.callWeatherAPIs()
+        }
     }
 }
 
@@ -193,7 +217,6 @@ extension CityWeatherDetailVC {
         print(weatherReq.getParameters())
         DataManager.singleton.getRequest(WebAPI.TodayForcast, params: weatherReq.getParameters())
         { (response: Result<CurrentWeatherRes>) in
-            
             self.apiGroup.leave()
             switch response {
             case .success(let value):
@@ -259,7 +282,7 @@ extension CityWeatherDetailVC: UITableViewDelegate, UITableViewDataSource {
             return 1
         }
         if self.arrExtendedInfo.count == 0 {
-            self.tblWeatherDetails.setEmptyMessage(Texts.tableEmpty, buttonTitle: Texts.selectCity, selector: #selector(self.selectCityTapped), target: self)
+            self.tblWeatherDetails.setEmptyMessage(Texts.tableEmpty, buttonTitle: Texts.selectCity, selector: #selector(self.selectCityTapped), labelColor:.white, target: self)
         } else {
             self.tblWeatherDetails.restore()
         }
