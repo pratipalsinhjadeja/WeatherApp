@@ -112,15 +112,20 @@ class CityWeatherDetailVC: UIViewController {
     }
     
     func setupHeaderView() {
-        DispatchQueue.main.async {
-            self.lblCity.text = self.objWeatherData.name
-            self.lblTemp.text = Helper.getTemp(temperature: self.objWeatherData.main.temp)
-            if let objWeather = self.objWeatherData.weather.first {
-                self.lblWeatherCondition.text = objWeather.main
+        if(self.objWeatherData != nil) {
+            DispatchQueue.main.async {
+                self.lblCity.text = self.objWeatherData.name
+                self.lblTemp.text = Helper.getTemp(temperature: self.objWeatherData.main.temp)
+                if let objWeather = self.objWeatherData.weather.first {
+                    self.lblWeatherCondition.text = objWeather.main
+                }
+                self.lblDay.text = Helper.getDayName(timeInterval: self.objWeatherData?.dt ?? 0)
+                self.lblMaxTemp.text = Helper.getTemp(temperature: self.objWeatherData.main.temp_max)
+                self.lblMinTemp.text = Helper.getTemp(temperature: self.objWeatherData.main.temp_min)
             }
-            self.lblDay.text = Helper.getDayName(timeInterval: self.objWeatherData?.dt ?? 0)
-            self.lblMaxTemp.text = Helper.getTemp(temperature: self.objWeatherData.main.temp_max)
-            self.lblMinTemp.text = Helper.getTemp(temperature: self.objWeatherData.main.temp_min)
+        }
+        else{
+            self.clearHeaderViewandDataArrays()
         }
     }
     
